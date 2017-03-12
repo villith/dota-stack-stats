@@ -1,0 +1,64 @@
+body {
+  background-color: #F2F2F2;
+}
+
+#app {
+  font: 14px 'Rubik', sans-serif;
+  color: #4d4d4d;
+  background-color: #EEEEEE;
+}
+
+a.active {
+  color: orange;
+}
+
+nav {
+  padding-top: 20px;
+}
+
+.player-stats {
+}
+
+.profile-container {
+}
+
+.avatar-container {
+}
+
+.avatar-container img {
+  border-radius: 50%;
+}
+
+.playerinfo-container {
+  padding-left: 50px;
+}
+.playername-container {
+}
+
+.playername-container p {
+  font-size: 36px;
+  font-variant: small-caps;
+  font-weight: bold;
+}
+.matchlist-row i {
+  vertical-align: middle;
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+.matchlist-row:hover {
+  background-color: #CCCCCC;
+}
+
+.stat-key {
+  font-size: 24px;
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-variant: small-caps;;
+  font-weight: bold;
+}
