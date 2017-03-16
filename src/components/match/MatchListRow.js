@@ -14,7 +14,7 @@ let MatchListRow = ({ match }) => {
   let lossStyle = {
     color: 'red'
   };
-  
+
   return (
     <tr className="matchlist-row">
       <td style={heroNameStyle} className="col-md-4"><i className={iconClassName}></i>  {match.heroName}</td>

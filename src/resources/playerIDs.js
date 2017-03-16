@@ -1,5 +1,5 @@
-export default function playerIDs() {
-  let players = {
+export default {
+  players: {
     zack: ['76561198043899518', '83633790'],
     scott: ['76561198031758954', '71493226'],
     rob: ['76561198026942332', '66676604'],
@@ -12,6 +12,5 @@ export default function playerIDs() {
     alex: ['76561197964638003', '4372275'],
     jake: ['76561198158605918', '198340190'],
     tom: ['76561198024081774', '63816046']
-  };
-  return players;
-}
+  }
+};

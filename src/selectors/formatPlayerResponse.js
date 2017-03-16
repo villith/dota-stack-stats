@@ -1,43 +1,48 @@
-export default function formatResponse(res) {
-  let OD_getPlayers = {
-    competitive_rank: "4691",
-    mmr_estimate: {
-      estimate: 4489,
-      n: 20,
-      stdDev: 266.5520587052368
-    },
-    profile: {
-      account_id: 83633790,
-      avatar: "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/e3/e3e3def7d1ca0deba0b257be63926f6c2b9e6eae.jpg",
-      avatarfull: "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/e3/e3e3def7d1ca0deba0b257be63926f6c2b9e6eae_full.jpg",
-      avatarmedium: "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/e3/e3e3def7d1ca0deba0b257be63926f6c2b9e6eae_medium.jpg",
-      cheese: 0,
-      last_login: "2016-12-03T17:58:23.439Z",
-      loccountrycode: "US",
-      name: null,
-      personaname: "Tricepz",
-      profileurl: "http://steamcommunity.com/profiles/76561198043899518/",
-      steamid: "76561198043899518"
-    },
-    solo_competitive_rank: "4676",
-    tracked_until: "1491281645"
-  };
-  let OD_getPlayers_wl = {
-    win: 1453,
-    lose: 1335
-  };
+import playerIDs from '../resources/playerIDs';
+
+let getSteamID32 = steamID64 => {
+  let players = playerIDs.players;
+  let keys = Object.keys(players);
+  for (let i = 0; i < keys.length; i++) {
+    let key = keys[i];
+    let player = players[key];
+    if (player[0] === steamID64) {
+      return player[1];
+    }
+  }
+};
+
+let steam_getPlayerSummary = player => {
+  let steamID64 = player.steam_getPlayerSummary.steamid;
+  let steamID32 = getSteamID32(steamID64);
 
   let formattedResponse = {
-    name: res.OD_getPlayers.profile.personaname, // "Tricepz"
-    avatar: res.OD_getPlayers.profile.avatarfull, // "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/e3/e3e3def7d1ca0deba0b257be63926f6c2b9e6eae.jpg"
+    steamid64: steamID64,
+    steamid32: steamID32, // "836338790"
+    name: player.steam_getPlayerSummary.personaname, // "Tricepz"
+    avatar: player.steam_getPlayerSummary.avatarfull, // "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/e3/e3e3def7d1ca0deba0b257be63926f6c2b9e6eae.jpg"
     statLine: {
-      soloMMR: res.OD_getPlayers.solo_competitive_rank, // 4676
-      partyMMR: res.OD_getPlayers.competitive_rank, // 4691
-      estimatedMMR: res.OD_getPlayers.mmr_estimate.estimate, // 4489
-      wins: res.OD_getPlayers_wl.win, // 1453
-      losses: res.OD_getPlayers_wl.lose // 1335
+      soloMMR: 4676, // res.OD_getPlayers.solo_competitive_rank, // 4676
+      partyMMR: 4691, // res.OD_getPlayers.competitive_rank, // 4691
+      estimatedMMR: 4489, // res.OD_getPlayers.mmr_estimate.estimate, // 4489
+      wins: 1453, // res.OD_getPlayers_wl.win, // 1453
+      losses: 1335 // res.OD_getPlayers_wl.lose // 1335
     }
   };
 
   return formattedResponse;
-}
+};
+
+let OD_getPlayer = res => {
+
+};
+
+let OD_getPlayerWL = res => {
+
+};
+
+module.exports = {
+  steam_getPlayerSummary: steam_getPlayerSummary,
+  OD_getPlayer: OD_getPlayer,
+  OD_getPlayerWL: OD_getPlayerWL
+};

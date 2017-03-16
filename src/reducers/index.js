@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import matches from './matchReducer';
-import player from './playerReducer';
+import players from './playerReducer';
 
 const rootReducer = combineReducers({
   matches,
-  player
+  players
 });
 
 export default rootReducer;

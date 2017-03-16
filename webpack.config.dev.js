@@ -23,6 +23,12 @@ export default {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'src')
+    // proxy: {
+    //   'https://api.steampowered.com/*': {
+    //       target: 'https://api.steampowered.com',
+    //       changeOrigin: true
+    //   }
+    // }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
