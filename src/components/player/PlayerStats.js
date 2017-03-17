@@ -2,6 +2,10 @@ import React, { PropTypes } from 'react';
 import PlayerStatLine from './PlayerStatLine';
 
 let PlayerStats = ({ player }) => {
+  let axeIconClassName = `d2mh hero-2`;
+  let sandKingIconClassName = `d2mh hero-16`;
+  let axePercentage = (player.axeCount / player.matchCount * 100).toFixed(2);
+  let sandKingPercentage = (player.sandKingCount / player.matchCount * 100).toFixed(2);
   let winStyle = {
     color: 'green'
   };
@@ -28,6 +32,14 @@ let PlayerStats = ({ player }) => {
               <p className="stat-key">Losses</p>
               <br/>
               <p className="stat-value" style={lossStyle}>{player.lossCount}</p>
+            </div>
+            <div className="stat-block col-md-3">
+              <p className="stat-key"><i className={axeIconClassName}></i></p>
+              <p className="stat-value">{axePercentage}%</p>
+            </div>
+            <div className="stat-block col-md-3">
+              <p className="stat-key"><i className={sandKingIconClassName}></i></p>
+              <p className="stat-value">{sandKingPercentage}%</p>
             </div>
           </div>
         </div>

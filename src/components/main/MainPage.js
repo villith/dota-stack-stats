@@ -111,7 +111,23 @@ function mapStateToProps(state, ownProps) {
     return player;
   };
 
+  let getHeroPercentage = player => {
+    player.axeCount = 0;
+    player.sandKingCount = 0;
+    for (let i = 0; i < matches.length; i++) {
+      let match = matches[i];
+      if (match.heroID == 2) {
+        player.axeCount += 1;
+      }
+      if (match.heroID == 16) {
+        player.sandKingCount += 1;
+      }
+    }
+    return player;
+  }
+
   mainPlayer = calculateWinLoss(mainPlayer);
+  mainPlayer = getHeroPercentage(mainPlayer);
   let teammates = getTeammates();
   teammates.sort((a, b) => {
     return b.matchCount - a.matchCount;
