@@ -1,4 +1,5 @@
 import heroIDs from '../resources/heroIDs';
+import playerIDs from '../resources/playerIDs';
 import matchApi from '../apiInterfaces/matchApiInterface';
 
 let findPlayerInSteamGetMatchDetails = (match, playerID) => {
@@ -9,6 +10,24 @@ let findPlayerInSteamGetMatchDetails = (match, playerID) => {
       return player;
     }
   }
+};
+
+let getTeammates = match => {
+  let teammates = [];
+  let players = playerIDs.players;
+  let keys = Object.keys(players);
+  let matchPlayers = match.players;
+  for (let i = 0; i < matchPlayers.length; i++) {
+    let matchPlayer = matchPlayers[i];
+    for (let k = 0; k < keys.length; k++) {
+      let key = keys[k];
+      let player = players[key];
+      if (matchPlayer.account_id == player[1]) {
+        teammates.push(matchPlayer);
+      }
+    }
+  }
+  return teammates;
 };
 
 let heroIDtoName = heroID => {
@@ -82,8 +101,6 @@ let durationToReadableTime = duration => {
 
 let formatMatchesResponse = (match, playerID) => {
   let player = findPlayerInSteamGetMatchDetails(match, playerID);
-  console.log(player);
-  console.log(match);
   let formattedResponse = {
     matchID: match.steam_getMatchHistory.match_id,
     heroID: player.hero_id,
@@ -92,12 +109,14 @@ let formatMatchesResponse = (match, playerID) => {
     duration: durationToReadableTime(match.steam_getMatchDetails.duration),
     kills: player.kills,
     deaths: player.deaths,
-    assists: player.assists
+    assists: player.assists,
+    teammates: getTeammates(match.steam_getMatchDetails)
   };
 
   return formattedResponse;
 };
 
 module.exports = {
-  formatMatchesResponse: formatMatchesResponse
+  formatMatchesResponse: formatMatchesResponse,
+  findPlayerInSteamGetMatchDetails: findPlayerInSteamGetMatchDetails
 };

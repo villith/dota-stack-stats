@@ -77,10 +77,46 @@ function mapStateToProps(state, ownProps) {
     return reformattedMatch;
   });
 
-  let teammates = [];
+  let getTeammates = () => {
+    let teammates = [];
+    for (let i = 0; i < players.length; i++) {
+      let player = players[i];
+      if (player.steamid32 !== mainPlayer.steamid32) {
+        calculateWinLoss(player);
+        teammates.push(player);
+      }
+    }
+    return teammates;
+  };
 
-  console.log('MAP STATE TO PROPS');
-  console.log([players, mainPlayer, teammates, matches]);
+  let calculateWinLoss = player => {
+    player.matchCount = 0;
+    player.winCount = 0;
+    player.lossCount = 0;
+    for (let k = 0; k < matches.length; k++) {
+      let match = matches[k];
+      for (let v = 0; v < match.teammates.length; v++) {
+        let teammate = match.teammates[v];
+        if (player.steamid32 == teammate.account_id) {
+          player.matchCount += 1;
+          if (match.result === "WIN") {
+            player.winCount += 1;
+          }
+          else {
+            player.lossCount += 1;
+          }
+        }
+      }
+    }
+    return player;
+  };
+
+  mainPlayer = calculateWinLoss(mainPlayer);
+  let teammates = getTeammates();
+  teammates.sort((a, b) => {
+    return b.matchCount - a.matchCount;
+  });
+
   return {
     players: players,
     mainPlayer: mainPlayer,

@@ -19,16 +19,6 @@ let PlayerStatLine = ({ stats }) => {
         <br/>
         <p className="stat-value" style={lossStyle}>{stats.losses}</p>
       </div>
-      <div className="stat-block col-md-2">
-        <p className="stat-key">Solo</p>
-        <br/>
-        <p className="stat-value">{stats.soloMMR}</p>
-      </div>
-      <div className="stat-block col-md-2">
-        <p className="stat-key">Party</p>
-        <br/>
-        <p className="stat-value">{stats.partyMMR}</p>
-      </div>
     </div>
   );
 };

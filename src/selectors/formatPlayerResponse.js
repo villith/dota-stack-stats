@@ -21,6 +21,8 @@ let steam_getPlayerSummary = player => {
     steamid32: steamID32, // "836338790"
     name: player.steam_getPlayerSummary.personaname, // "Tricepz"
     avatar: player.steam_getPlayerSummary.avatarfull, // "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/e3/e3e3def7d1ca0deba0b257be63926f6c2b9e6eae.jpg"
+    avatarsmall: player.steam_getPlayerSummary.avatar,
+    avatarmedium: player.steam_getPlayerSummary.avatarmedium,
     statLine: {
       soloMMR: 4676, // res.OD_getPlayers.solo_competitive_rank, // 4676
       partyMMR: 4691, // res.OD_getPlayers.competitive_rank, // 4691

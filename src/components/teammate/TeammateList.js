@@ -6,6 +6,7 @@ let TeammateList = ({ teammates }) => {
     <table className="table">
       <thead>
         <tr>
+          <th>&nbsp;</th>
           <th>PLAYER</th>
           <th>MATCHES</th>
           <th>WIN %</th>
@@ -13,7 +14,7 @@ let TeammateList = ({ teammates }) => {
       </thead>
       <tbody>
         {teammates.map(teammate =>
-          <TeammateListRow key={teammate.playerID} teammate={teammate}/>
+          <TeammateListRow key={teammate.steamid32} teammate={teammate}/>
         )}
       </tbody>
     </table>
