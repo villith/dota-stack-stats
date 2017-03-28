@@ -52,7 +52,7 @@ Edit src/resources/playerIDs.js to change the players displayed on the page.
 
 ## Authors
 
-* **Scott Donnelly** - [PurpleBooth](https://github.com/villith)
+* **Scott Donnelly** - [villith](https://github.com/villith)
 
 ## License
 
